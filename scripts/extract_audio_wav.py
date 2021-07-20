@@ -50,7 +50,7 @@ class Ffmpeg_Command:
                 prefix = "s2_"
             elif self.mov_path.find('Shrek_3') != -1:
                 prefix = "s3_"
-            else
+            else:
                 raise ValueError("Could not determine proper tagging mechanism on `self.output_destination`")
 
         assert prefix is not None, "Sanity Check - Unreachable"
