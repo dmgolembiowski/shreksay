@@ -26,7 +26,9 @@ def load_only_shrek_from_shrek_1_srt() -> List[srt.Subtitle]:
                 assert "DONKEY" not in sub_slot.content
                 assert "FARQUAAD" not in sub_slot.content
                 assert "GINGERBREAD MAN" not in sub_slot.content
-
+                assert "MEN" not in sub_slot.content
+                assert "BLIND MOUSE" not in sub_slot.content
+                assert "PINOCCHIO" not in sub_slot.content
                 filtered.append(sub_slot)
             except AssertionError:
                 continue
@@ -36,6 +38,6 @@ def load_only_shrek_from_shrek_1_srt() -> List[srt.Subtitle]:
 subtitles = load_only_shrek_from_shrek_1_srt()
 
 import pprint
-pprint.pprint(subtitles)
+# # pprint.pprint(subtitles)
 
 print(f"Getting {len(subtitles)} distinct training sound bytes for Shrek 1")
