@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import datetime as dt
-from typing import Option
+from typing import Optional
 
 class Ffmpeg_Command:
     
@@ -39,7 +39,7 @@ class Ffmpeg_Command:
     @property
     def output_destination(self):
 
-        prefix: Option[str] = None
+        prefix: Optional[str] = None
         
         if self.__output_dest is not None:
             return self.__output_dest
@@ -64,7 +64,7 @@ class Ffmpeg_Command:
 
 class Tts_Command:
     
-    def __init__(self, text, output_dest: Option[str] = None):
+    def __init__(self, text, output_dest: Optional[str] = None):
         self.text = text.replace("SHREK\n", '')
         self.text = self.text.replace("\n", ' ')
         self.__output_dest = output_dset
