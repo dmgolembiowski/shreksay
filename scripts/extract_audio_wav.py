@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+import urllib.parse as up
 import datetime as dt
 from typing import Optional
 
@@ -19,10 +19,10 @@ class Ffmpeg_Command:
     def __str__(self):
 
         from_    = '0' + str(dt.timedelta(seconds=self.subtitle.start.seconds))
-        from_ext = str(self.subtitle.start.microseconds)[0:2]
+        from_ext = str(self.subtitle.start.microseconds)[0:3]
 
         to     = '0' + str(dt.timedelta(seconds=self.subtitle.end.seconds))
-        to_ext = str(self.subtitle.end.microseconds)[0:2]
+        to_ext = str(self.subtitle.end.microseconds)[0:3]
 
         try:
             try:
@@ -34,7 +34,7 @@ class Ffmpeg_Command:
 
         dest = self.output_destination
 
-        return f"ffmpeg -i {self.mov_path} -ss {from_}.{from_ext} -t {to}.{to_ext} -c copy {dest}"
+        return f'ffmpeg -i {self.mov_path} -ss {from_}.{from_ext} -t {to}.{to_ext} -c copy "{dest}"'
 
     @property
     def output_destination(self):
@@ -56,11 +56,14 @@ class Ffmpeg_Command:
         assert prefix is not None, "Sanity Check - Unreachable"
 
         filename_base = self.subtitle.content.lstrip("SHREK\n")
-        filename_base = filename_base.replace(' ',  '_')
-        filename_base = filename_base.replace('\n', '_')
+        filename_base = up.quote_plus(filename_base)
         
-        dest = prefix + filename_base + ".wav"
+        if '.' in filename_base:
+            filename_base = filename_base.replace('.', '%2E')
 
+        dest = prefix + filename_base + ".wav"
+        
+        return dest
 
 class Tts_Command:
     

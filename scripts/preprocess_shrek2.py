@@ -36,6 +36,6 @@ def load_only_shrek_from_shrek_2_srt() -> List[srt.Subtitle]:
 subtitles = load_only_shrek_from_shrek_2_srt()
 
 import pprint
-pprint.pprint(subtitles)
+# pprint.pprint(subtitles)
 
 print(f"Getting {len(subtitles)} distinct training sound bytes for Shrek 2")
